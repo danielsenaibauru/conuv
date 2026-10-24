@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Site Unificado</title>
+    <style>
+        /* CONFIGURAÇÃO DA PALETA DE CORES */
+        :root {
+            --cor-principal: #2A4365;       /* Azul Escuro */
+            --cor-secundaria: #319795;      /* Verde Esmeralda */
+            --cor-fundo-claro: #F7FAFC;     /* Fundo geral */
+            --cor-fundo-card: #FFFFFF;      /* Branco para blocos */
+            --cor-texto-escuro: #2D3748;    /* Cinza escuro para leitura */
+            --cor-texto-mutado: #718096;    /* Cinza claro para legendas */
+        }
+
+        /* Configurações Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth; /* Efeito de deslizar suave ao clicar no menu */
+        }
+
+        body {
+            background-color: var(--cor-fundo-claro);
+            color: var(--cor-texto-escuro);
+            line-height: 1.6;
+            padding-top: 80px; /* Espaço para o menu fixo não cobrir o conteúdo */
+        }
+
+        /* Menu de Navegação Fixo */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--cor-fundo-card);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--cor-principal);
+        }
+
+        .menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: var(--cor-texto-escuro);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .menu a:hover {
+            color: var(--cor-secundaria);
+        }
+
+        /* Estrutura de Seções */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+            padding-top: 20px; /* Ajuste para o clique do menu alinhar perfeitamente */
+        }
+
+        h1.titulo-secao {
+            color: var(--cor-principal);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h1.titulo-secao::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--cor-secundaria);
+            border-radius: 2px;
+        }
+
+        /* SEÇÃO 1: PALETA DE CORES */
+        .paleta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .cor-card {
+            background: var(--cor-fundo-card);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            padding-bottom: 15px;
+        }
+
+        .cor-visual {
+            height: 120px;
+            width: 100%;
+        }
+
+        .cor-card h3 {
+            margin: 15px 0 5px 0;
+            font-size: 1.1rem;
+        }
+
+        .cor-card code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        /* SEÇÃO 2: SOBRE */
+        .sobre-bloco {
+            background: var(--cor-fundo-card);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .pilares-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .pilar-card {
+            background: var(--cor-fundo-card);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid var(--cor-secundaria);
+        }
+
+        /* SEÇÃO 3: GALERIA */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .galeria-item {
+            background: var(--cor-fundo-card);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .galeria-item:hover {
+            transform: scale(1.03);
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
+            display: block;
+        }
+
+        .galeria-info {
+            padding: 15px;
+        }
+
+        .galeria-info h4 {
+            color: var(--cor-principal);
+            margin-bottom: 5px;
+        }
+
+        .galeria-info p {
+            color: var(--cor-texto-mutated);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            body {
+                padding-top: 110px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menu de Navegação -->
+    <nav class="navbar">
+        <div class="logo">NuanceNeu</div>
+        <ul class="menu">
+            <li><a href="#paleta">Paleta</a></li>
+            <li><a href="#sobre">Sobre Nós</a></li> 
+            <li><a href="#galeria">Galeria</a></li>
+        </ul>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <div class="container">
+
+        <!-- SEÇÃO: PALETA DE CORES -->
+        <section id="paleta">
+            <h1 class="titulo-secao">Nossa Paleta de Cores</h1>
+            <div class="paleta-grid">
+                <div class="cor-card">
+                    <div class="cor-visual" style="background-color: #2A4365;"></div>
+                    <h3>Principal</h3>
+                    <code>#2A4365</code>
+                </div>
+                <div class="cor-card">
+                    <div class="cor-visual" style="background-color: #319795;"></div>
+                    <h3>Secundária</h3>
+                    <code>#319795</code>
+                </div>
+                <div class="cor-card">
+                    <div class="cor-visual" style="background-color: #F7FAFC;"></div>
+                    <h3>Fundo Claro</h3>
+                    <code>#F7FAFC</code>
+                </div>
+                <div class="cor-card">
+                    <div class="cor-visual" style="background-color: #2D3748;"></div>
+                    <h3>Texto Escuro</h3>
+                    <code>#2D3748</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: SOBRE -->
+        <section id="sobre">
+            <h1 class="titulo-secao">Sobre a Empresa</h1>
+            <div class="sobre-bloco">
+                <p>O Gerador e Inspiração de Paletas de Cores nasceu da necessidade de unir a sensibilidade estética do design à robustez da engenharia de software moderna. Sabemos que a escolha das cores é a alma de qualquer interface, marca ou ambiente, pois dita a forma como as pessoas se sentem e interagem com o mundo. Nossa missão com esta ferramenta é simplificar e inspirar o processo criativo de designers, desenvolvedores e arquitetos, offering combinações harmônicas e aplicações visuais práticas de forma rápida e intuitiva.</p>
+            </div>
+            <div class="pilares-grid">
+                <div class="pilar-card">
+                    <h3>Missão</h3>
+                    <p>Inspirar e simplificar a criação digital, entregando paletas de cores harmônicas por meio de uma plataforma rápida, minimalista e estável na nuvem.</p>
+                </div>
+                <div class="pilar-card">
+                    <h3>Visão</h3>
+                    <p>Ser a ferramenta de referência em curadoria de cores para designers e desenvolvedores, unindo inovação visual e alta performance técnica.</p>
+                </div>
+                <div class="pilar-card">
+                    <h3>Valores</h3>
+                    <p>Minimalismo: Design limpo e focado no que importa. Eficiência: Velocidade e infraestrutura robusta em nuvem. Inovação: Estética moderna alinhada às tendências de UI/UX.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: GALERIA -->
+        <section id="galeria">
+            <h1 class="titulo-secao">Nossa Galeria</h1>
+            <div class="galeria-grid">
+                <!-- Card 1 -->
+                <div class="galeria-item">
+                    <img src="https://ads-negrao-daluca-bucket.s3.us-east-2.amazonaws.com/images/image1.jpg" alt="Imagem 1 da galeria">
+                    <div class="galeria-info">
+                        <h4>Projeto Alfa</h4>
+                        <p>Cores vibrantes para ambientes automotivos.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="galeria-item">
+                    <img src="https://ads-negrao-daluca-bucket.s3.us-east-2.amazonaws.com/images/image6.jpg" alt="Imagem 2 da galeria">
+                    <div class="galeria-info">
+                        <h4>Projeto Beta</h4>
+                        <p>Cores que impactam para ambientes corporativos.</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="galeria-item">
+                    <img src="https://ads-negrao-daluca-bucket.s3.us-east-2.amazonaws.com/images/image3.jpg" alt="Imagem 3 da galeria">
+                    <div class="galeria-info">
+                        <h4>Projeto Gama</h4>
+                        <p>Cores modernas para sua residência.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
